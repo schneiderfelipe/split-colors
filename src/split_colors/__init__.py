@@ -10,17 +10,21 @@ def run():
     path = Path(sys.argv[1])
 
     image = Image.open(path)
+    data = image.getdata()
 
     basename, extension = os.path.splitext(path)
 
-    red = np.asarray(image.getchannel("R"))
-    red_image = ImageOps.colorize(Image.fromarray(red, "L"), "#FF0000", "#FFFFFF")
+    red = [(d[0], 0, 0) for d in data]
+    red_image = image.copy()
+    red_image.putdata(red)
 
-    green = np.asarray(image.getchannel("G"))
-    green_image = ImageOps.colorize(Image.fromarray(green, "L"), "#00FF00", "#FFFFFF")
+    green = [(0, d[1], 0) for d in data]
+    green_image = image.copy()
+    green_image.putdata(green)
 
-    blue = np.asarray(image.getchannel("B"))
-    blue_image = ImageOps.colorize(Image.fromarray(blue, "L"), "#0000FF", "#FFFFFF")
+    blue = [(0, 0, d[2]) for d in data]
+    blue_image = image.copy()
+    blue_image.putdata(blue)
 
     try:
         alpha = image.getchannel("A")
