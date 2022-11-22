@@ -10,7 +10,7 @@ split-colors = 'split_colors:run'
 
 [tool.poetry.dependencies]
 python = "^3.9"
-Pillow = "^9.1.1"
+Pillow = "^9.3.0"
 numpy = "^1.22.3"
 
 [tool.poetry.dev-dependencies]
